@@ -1,4 +1,4 @@
-# classifiers
+# IMDB classifiers
 import random
 import pandas as pd
 import numpy as np
@@ -69,7 +69,7 @@ if __name__ == "__main__":
 	IMDB_Bin_BoW_valid = create_bin_bag_of_words(IMDB_corpus_valid, IMDB_dictionary)
 	print ("created Bag of Words for validation")
 
-	
+
 
 	do_Naive_Bayes_Bernoulli(IMDB_Bin_BoW_train, IMDB_Bin_BoW_valid, get_true_rating(IMDB_corpus_train), get_true_rating(IMDB_corpus_valid))
 	
