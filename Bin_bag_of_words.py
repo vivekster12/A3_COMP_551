@@ -50,7 +50,7 @@ if __name__ == "__main__":
 	# yelp_corpus = pd.read_csv(r'/Users/vivek/git/A3_COMP_551/Yelp_Datasets/yelp-train.txt',encoding='utf-8',header = None,sep='\t')
 	# labels, yelp_dictionary = create_dictionary(yelp_corpus)
 	# yelp_term_doc_mat = create_bin_bag_of_words(yelp_corpus,yelp_dictionary)
-	# pd.DataFrame(data = np.array(yelp_term_doc_mat)).to_csv(r'/Users/vivek/git/A3_COMP_551/Yelp_Datasets/yelp-Bin_BoW.csv', index = False, header = False)
+	pd.DataFrame(data = np.array(yelp_term_doc_mat)).to_csv(r'/Users/vivek/git/A3_COMP_551/Yelp_Datasets/yelp-Bin_BoW.csv', index = False, header = False)
 
 	# IMDB_corpus = pd.read_csv(r'/Users/vivek/git/A3_COMP_551/IMDB_Datasets/IMDB-train.txt',encoding='utf-8',header = None,sep='\t')
 	# labels, IMDB_dictionary = create_dictionary(IMDB_corpus)
