@@ -8,6 +8,7 @@ import time
 import sklearn.metrics as sk
 from sklearn.naive_bayes import BernoulliNB
 from sklearn import tree
+import matplotlib.pyplot as plt
 
 
 def create_bin_bag_of_words(corpus,dictionary):
@@ -47,17 +48,29 @@ def get_true_rating(corpus):
 	return (true_rating)
 
 def do_Naive_Bayes_Bernoulli(train_BoW, testing_BoW, train_true_rating, testing_true_rating):
-	smoothing = np.linspace(1,20,100)
+	# smoothing = np.linspace(0,1,100)
+	smoothing = [0.010101010101010102]
 	f1_list = []
 	for i in smoothing:
-		# print ("i:	",i)
+		print ("i:	",i)
 		clf = BernoulliNB(alpha = i)
 		clf.fit(train_BoW,train_true_rating)
 		pred_arr = clf.predict(testing_BoW)
 		f1_score = sk.f1_score(testing_true_rating, pred_arr, average='micro')
 		f1_list.append(f1_score)
 		# print (f1_score)
-	return (f1_list)
+	
+	# plt.plot(smoothing,f1_list)
+	# plt.xlabel('Smoothing Coefficient - alpha')
+	# plt.axvline(x=smoothing[np.argmax(f1_list)],linestyle='dashed', color = 'black')
+	# plt.axhline(y=np.amax(f1_list),linestyle='dashed', color = 'black')
+	# # plt.axvline(x=smoothing[np.argmax(f1_list) - 10],linestyle='dashed')
+	# # plt.axvline(x=smoothing[np.argmax(f1_list) + 10],linestyle='dashed')
+	# plt.ylabel('F-Measure')
+	# # plt.annotate('local max', xy=(np.argmax(f1_list), np.amax(f1_list)),arrowprops=dict(facecolor='black', shrink=0.05))
+	# plt.show()
+	print (np.amax(f1_list))
+	# print (smoothing[np.argmax(f1_list)])
 	
 def do_Decision_Trees(train_BoW, testing_BoW, train_true_rating, testing_true_rating):
 	# parameters:
@@ -106,11 +119,15 @@ if __name__ == "__main__":
 	Yelp_corpus_valid = pd.read_csv(r'/Users/vivek/git/A3_COMP_551/Yelp_Datasets/yelp-valid.txt',encoding='utf-8',header = None,sep='\t')
 	Yelp_Bin_BoW_valid = create_bin_bag_of_words(Yelp_corpus_valid, Yelp_dictionary)
 	print ("created Bag of Words for validation")
+	Yelp_corpus_test = pd.read_csv(r'/Users/vivek/git/A3_COMP_551/Yelp_Datasets/yelp-test.txt',encoding='utf-8',header = None,sep='\t')
+	Yelp_Bin_BoW_test = create_bin_bag_of_words(Yelp_corpus_test, Yelp_dictionary)
 
-	# list = do_Naive_Bayes_Bernoulli(Yelp_Bin_BoW_train, Yelp_Bin_BoW_valid, get_true_rating(Yelp_corpus_train), get_true_rating(Yelp_corpus_valid))
+	do_Naive_Bayes_Bernoulli(Yelp_Bin_BoW_train, Yelp_Bin_BoW_test, get_true_rating(Yelp_corpus_train), get_true_rating(Yelp_corpus_test))
 	# print (np.amax(np.array(list)))
-	list = do_Decision_Trees(Yelp_Bin_BoW_train, Yelp_Bin_BoW_valid, get_true_rating(Yelp_corpus_train), get_true_rating(Yelp_corpus_valid))
-	print (np.amax(list))
+	# list = do_Decision_Trees(Yelp_Bin_BoW_train, Yelp_Bin_BoW_valid, get_true_rating(Yelp_corpus_train), get_true_rating(Yelp_corpus_valid))
 
+
+	# smoothing = np.linspace(15,35,100)
+	# print (smoothing[55])
 	print (time.clock() - start)
 
