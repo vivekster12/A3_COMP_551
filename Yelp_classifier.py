@@ -122,7 +122,7 @@ if __name__ == "__main__":
 	Yelp_corpus_test = pd.read_csv(r'/Users/vivek/git/A3_COMP_551/Yelp_Datasets/yelp-test.txt',encoding='utf-8',header = None,sep='\t')
 	Yelp_Bin_BoW_test = create_bin_bag_of_words(Yelp_corpus_test, Yelp_dictionary)
 
-	do_Naive_Bayes_Bernoulli(Yelp_Bin_BoW_train, Yelp_Bin_BoW_test, get_true_rating(Yelp_corpus_train), get_true_rating(Yelp_corpus_test))
+	do_Naive_Bayes_Bernoulli(Yelp_Bin_BoW_train, Yelp_Bin_BoW_test, get_true_rating(Yelp_corpus_train), get_true_rating(Yelp_corpus_testg))
 	# print (np.amax(np.array(list)))
 	# list = do_Decision_Trees(Yelp_Bin_BoW_train, Yelp_Bin_BoW_valid, get_true_rating(Yelp_corpus_train), get_true_rating(Yelp_corpus_valid))
 
