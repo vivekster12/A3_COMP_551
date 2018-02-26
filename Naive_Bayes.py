@@ -1,4 +1,15 @@
 # Naive Bayes 
+import random
+import pandas as pd
+import numpy as np
+import string
+import collections
+import time
+import sklearn.metrics as sk
+from sklearn.naive_bayes import BernoulliNB
+from sklearn import tree
+import matplotlib.pyplot as plt
+from mpl_toolkits.mplot3d import Axes3D
 
 def create_bin_bag_of_words(corpus,dictionary):
 	Bin_BoW = []
@@ -58,8 +69,7 @@ def get_true_rating(corpus):
 
 # Bernoulli Naive Bayes
 def do_BNB(train_BoW, testing_BoW, train_true_rating, testing_true_rating, param_tuning):
-	# param_tuning = smoothing coefficient
-	param_tuning = [0.010101010101010102]
+	
 	f1_list = []
 	for i in param_tuning:
 		print ("i:	",i)
